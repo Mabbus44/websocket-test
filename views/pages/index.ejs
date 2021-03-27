@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-  The head
-</head>
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      let socket = io();
+      let el;
 
-<body>
-  The body
-</body>
+      socket.on('time', (timeString) => {
+        el = document.getElementById('server-time');
+        el.innerHTML = 'Server time: ' + timeString;
+      });
+    </script>
+  </head>
+  <body>
+    <p id="server-time"></p>
+  </body>
 </html>
