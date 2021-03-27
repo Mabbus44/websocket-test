@@ -1,7 +1,8 @@
-const express = require('express')
-const socketIO = require('socket.io')
-const path = require('path')
-const PORT = process.env.PORT || 3000
+require('dotenv').config({path:__dirname+'/.env'})
+const express = require('express');
+const socketIO = require('socket.io');
+const path = require('path');
+const PORT = process.env.PORT || 3000;
 const { Pool } = require('pg');
 const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
