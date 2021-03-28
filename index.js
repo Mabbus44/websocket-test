@@ -4,13 +4,6 @@ const express = require('express')
 const socketIO = require('socket.io')
 const path = require('path')
 const PORT = process.env.PORT || 3000
-const { Pool } = require('pg')
-const pool = new Pool({
-	connectionString: process.env.DATABASE_URL,
-	ssl: {
-		rejectUnauthorized: false
-	}
-})
 
 const server=express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -30,6 +23,13 @@ setInterval(() => io.emit('time', new Date().toTimeString()), 1000)
 console.log('index.js finished')
 
 function getChatHistory(){
+  const { Pool } = require('pg')
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  })
   console.log('getChatHistory')
   try {
     const client = await pool.connect()
