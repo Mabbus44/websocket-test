@@ -15,8 +15,8 @@
       socket.on('time', (timeString) => {
         document.getElementById('serverTime').innerHTML = 'Server time: ' + timeString
       })
-      socket.on('chatHistory', (chatHistory) => {
-        document.getElementById('messages').innerHTML = chatHistory
+      socket.on('chatHistory', (chatHistoryText) => {
+        document.getElementById('messages').innerHTML = chatHistoryText
       })
     </script>
   </body>
