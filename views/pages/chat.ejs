@@ -4,8 +4,6 @@
   </head>
   <body>
     <p id="serverTime"></p>
-    <label for="socketID">socket ID:</label>
-    <p id="socketID"></p><br><br>
     <label for="userName">username:</label>
     <input id="userName>"><br><br>
     <label for="message">message:</label>
@@ -14,9 +12,11 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io()
-      document.getElementById('socketID').innerHTML = socket.id
       socket.on('time', (timeString) => {
         document.getElementById('serverTime').innerHTML = 'Server time: ' + timeString
+      })
+      socket.on('chatHistory', (chatHistory) => {
+        document.getElementById('messages').innerHTML = chatHistory
       })
     </script>
   </body>

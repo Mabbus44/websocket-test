@@ -22,8 +22,13 @@ const server=express()
 const io = socketIO(server)
 io.on('connection', (socket) => {
   console.log(`Client connected ${socket.id}`)
+  socket.emit('chatHistory', getChatHistory)
   socket.on('disconnect', () => console.log(`Client disconnected ${socket.id}`))
-});
+})
 
 setInterval(() => io.emit('time', new Date().toTimeString()), 1000)
 console.log('index.js finished')
+
+function getChatHistory(){
+  return "Not really the chat history"
+}
