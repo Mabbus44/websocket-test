@@ -31,5 +31,14 @@ console.log('index.js finished')
 
 function getChatHistory(){
   console.log('getChatHistory')
-  return 'Not really the chat history'
+  try {
+    const client = await pool.connect()
+    const result = await client.query('SELECT * FROM chat')
+    const results = { 'results': (result) ? result.rows : null}
+    client.release()
+  } catch (err) {
+    console.error(err)
+    return 'error'
+  }  
+  return results
 }
