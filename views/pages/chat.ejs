@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var socket = io();
-      var el;
-
-      socket.on('time', (timeString) => {
-        el = document.getElementById('serverTime');
-        el.innerHTML = 'Server time: ' + timeString;
-      });
-    </script>
   </head>
   <body>
     <p id="serverTime"></p>
+    <label for="socketID">socket ID:</label>
+    <text id="socketID>"><br><br>
     <label for="userName">username:</label>
     <input id="userName>"><br><br>
     <label for="message">message:</label>
     <input id="message>"><br><br>
     <p id="messages"></p>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io()
+      var el
+      document.getElementById('socketID').innerHTML = socket.id
+      socket.on('time', (timeString) => {
+        el = document.getElementById('serverTime')
+        el.innerHTML = 'Server time: ' + timeString
+      })
+    </script>
   </body>
 </html>
