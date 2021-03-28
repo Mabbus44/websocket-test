@@ -20,7 +20,7 @@ const server=express()
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 const io = socketIO(server)
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
   console.log(`Client connected ${socket.id}`)
   socket.emit('chatHistory', getChatHistory())
   socket.on('disconnect', () => console.log(`Client disconnected ${socket.id}`))
@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
 setInterval(() => io.emit('time', new Date().toTimeString()), 1000)
 console.log('index.js finished')
 
-async function getChatHistory(){
+function getChatHistory(){
   console.log('getChatHistory')
   try {
     const client = await pool.connect()
@@ -40,5 +40,5 @@ async function getChatHistory(){
     console.error(err)
     return 'error'
   }  
-  return results
+  return JSON.stringify(results)
 }
