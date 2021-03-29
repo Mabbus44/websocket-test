@@ -3,14 +3,14 @@
   <head>
   </head>
   <body>
-    <p id="serverTime"></p>
-    <label for="userName">username:</label>
-    <input id="userName>"><br><br>
-    <label for="mymessage">message:</label>
-    <input id="mymessage>"><br><br>
-    <button onclick="sendMessage()">Send</button>
-    <p id="messages"></p>
-    <script src="/socket.io/socket.io.js"></script>
+    <p id='serverTime'></p>
+    <label for='userName'>username:</label>
+    <input id='userName>'><br><br>
+    <label for='message'>message:</label>
+    <input id='message'><br><br>
+    <button onclick='sendMessage()'>Send</button>
+    <p id='messages'></p>
+    <script src='/socket.io/socket.io.js'></script>
     <script>
       var socket = io()
       socket.on('time', (timeString) => {
@@ -20,10 +20,7 @@
         document.getElementById('messages').innerHTML = chatHistoryText
       })
       function sendMessage(){
-        alert(document)
-        alert(document.getElementById('serverTime'))
-        alert(document.getElementById('mymessage'))
-        socket.emit('newMessage', document.getElementById('mymessage').innerHTML)
+        socket.emit('newMessage', document.getElementById('message').innerHTML)
       }
     </script>
   </body>
