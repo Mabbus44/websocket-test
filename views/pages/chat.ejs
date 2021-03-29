@@ -20,6 +20,9 @@
         document.getElementById('messages').innerHTML = chatHistoryText
       })
       function sendMessage(){
+        alert(document)
+        alert(document.getElementById('serverTime'))
+        alert(document.getElementById('message'))
         socket.emit('newMessage', document.getElementById('message').innerHTML)
       }
     </script>
