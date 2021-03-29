@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
   console.log(`Client connected ${socket.id}`)
   getChatHistory(socket)
   socket.on('disconnect', () => console.log(`Client disconnected ${socket.id}`))
-  socket.on('newMessage', saveMessage(message))
+  socket.on('newMessage', saveMessage)
 })
 
 setInterval(() => io.emit('time', new Date().toTimeString()), 1000)
