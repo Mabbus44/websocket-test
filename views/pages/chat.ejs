@@ -8,6 +8,7 @@
     <input id="userName>"><br><br>
     <label for="message">message:</label>
     <input id="message>"><br><br>
+    <button onclick="sendMessage()">Send</button>
     <p id="messages"></p>
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -18,6 +19,9 @@
       socket.on('chatHistory', (chatHistoryText) => {
         document.getElementById('messages').innerHTML = chatHistoryText
       })
+      function sendMessage(){
+        socket.emit('newMessage', document.getElementById('message').innerHTML)
+      }
     </script>
   </body>
 </html>
