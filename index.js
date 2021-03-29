@@ -32,19 +32,13 @@ console.log('index.js finished')
 async function getChatHistory(socket){
   console.log('getChatHistory')
   try {
-    console.log('Connecting')
     const client = await pool.connect()
-    console.log('Connected')
     const result = await client.query('SELECT * FROM chat')
-    console.log('Query done')
-    const results = { 'results': (result) ? result.rows : null}
-    console.log('Results done')
+    results = { 'results': (result) ? result.rows : null}
     client.release()
-    console.log('Client released')
+    socket.emit('chatHistory', JSON.stringify(results))
   } catch (err) {
-    console.log('ItsaError')
     console.error(err)
     socket.emit('chatHistory', 'error')
   }  
-  socket.emit('chatHistory', JSON.stringify(results))
 }
