@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
 setInterval(() => io.emit('time', new Date().toTimeString()), 1000)
 console.log('index.js finished')
 
-async function getChatHistory(){
+async function getChatHistory(socket){
   console.log('getChatHistory')
   try {
     const client = await pool.connect()
