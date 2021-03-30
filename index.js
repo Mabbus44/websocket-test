@@ -35,7 +35,7 @@ async function getChatHistory(socket){
   try {
     const client = await pool.connect()
     const result = await client.query('SELECT * FROM chat')
-    results = { 'results': (result) ? result.rows : null}
+    results = (result) ? result.rows : null
     client.release()
     socket.emit('chatHistory', JSON.stringify(results))
   } catch (err) {

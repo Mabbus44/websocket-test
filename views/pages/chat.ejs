@@ -15,7 +15,9 @@
       var socket = io()
       socket.on('time', uppdateTime)
       socket.on('chatHistory', (chatHistoryText) => {
-        document.getElementById('messages').innerHTML = chatHistoryText
+        let rows = JSON.parse(chatHistoryText)
+        let messages = rows
+        document.getElementById('messages').innerHTML = rows
       })
       function sendMessage(){
         socket.emit('newMessage', document.getElementById('message').value)
