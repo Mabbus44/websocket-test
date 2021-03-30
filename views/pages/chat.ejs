@@ -18,7 +18,7 @@
         let rows = JSON.parse(chatHistoryText)
         let messages = ''
         rows.forEach(element => {
-          messages += `${element.user_name}: ${element.message}\n`
+          messages += `${element.user_name}: ${element.message}<br>`
         })
         document.getElementById('messages').innerHTML = messages
       })
