@@ -44,13 +44,13 @@ async function getChatHistory(socket){
   }  
 }
 
-async function saveMessage(message){
+async function saveMessage(userName, message){
   console.log(`saveMessage ${message}`)
   try {
     const client = await pool.connect()
-    const result = await client.query(`INSERT INTO chat (message) VALUES ('${message}');`)
-    results = { 'results': (result) ? result.rows : null}
+    await client.query(`INSERT INTO chat (user_name, message) VALUES ('${userName}', '${message}');`)
     client.release()
+    getChatHistory(this)
   } catch (err) {
     console.error(err)
   }  

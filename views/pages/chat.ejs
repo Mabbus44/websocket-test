@@ -23,7 +23,7 @@
         document.getElementById('messages').innerHTML = messages
       })
       function sendMessage(){
-        socket.emit('newMessage', document.getElementById('message').value)
+        socket.emit('newMessage', document.getElementById('userName').value, document.getElementById('message').value)
       }
       function uppdateTime(timeString){
         document.getElementById('serverTime').innerHTML = 'Server time: ' + timeString
