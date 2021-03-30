@@ -18,9 +18,7 @@
         document.getElementById('messages').innerHTML = chatHistoryText
       })
       function sendMessage(){
-        var mes = document.getElementById('message').innerHTML
-        document.getElementById('messages').innerHTML = mes
-        socket.emit('newMessage', mes)
+        socket.emit('newMessage', document.getElementById('message').value)
       }
       function uppdateTime(timeString){
         document.getElementById('serverTime').innerHTML = 'Server time: ' + timeString
