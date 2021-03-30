@@ -13,14 +13,15 @@
     <script src='/socket.io/socket.io.js'></script>
     <script>
       var socket = io()
-      socket.on('time', (timeString) => {
-        document.getElementById('serverTime').innerHTML = 'Server time: ' + timeString
-      })
+      socket.on('time', uppdateTime)
       socket.on('chatHistory', (chatHistoryText) => {
         document.getElementById('messages').innerHTML = chatHistoryText
       })
       function sendMessage(){
         socket.emit('newMessage', document.getElementById('message').innerHTML)
+      }
+      function uppdateTime(timeString){
+        document.getElementById('serverTime').innerHTML = 'Server time: ' + timeString
       }
     </script>
   </body>
